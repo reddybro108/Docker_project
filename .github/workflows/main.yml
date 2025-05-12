@@ -1,0 +1,45 @@
+name: FastAPI Docker CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🧾 Checkout code
+      uses: actions/checkout@v3
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: ✅ Run syntax check
+      run: |
+        python -m py_compile main.py
+
+    - name: 🐳 Build Docker image
+      run: |
+        docker build -t fastapi-docker-app .
+
+    # 🔒 Optional: Push image to Docker Hub (replace with secrets)
+    - name: 🔐 Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: reddybro108
+        password: Amolreddy108
+
+    - name: 🚀 Push image to Docker Hub
+      run: |
+        docker tag fastapi-docker-app reddybro108/fastapi-docker-app:latest
+        docker push reddybro108/fastapi-docker-app:latest
