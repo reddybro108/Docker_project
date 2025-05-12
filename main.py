@@ -1,6 +1,11 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
+
+class Greetrequest(BaseModel):
+    name: str
+
 
 @app.get("/")
 def read_root():
