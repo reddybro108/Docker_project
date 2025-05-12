@@ -43,3 +43,5 @@ jobs:
       run: |
         docker tag fastapi-docker-app reddybro108/fastapi-docker-app:latest
         docker push reddybro108/fastapi-docker-app:latest
+
+
