@@ -11,14 +11,8 @@ class Greetrequest(BaseModel):
 def read_root():
     return {"message": "Hello from FastAPI in Docker!"}
 
+@app.post("/greet/{name}")
+def greet_user(name: str):
+    return {"message": f"Hello, {name}!"}
 
-# from fastapi import FastAPI
-# from .routes import router
 
-# app = FastAPI(title="Fibonacci API")
-
-# app.include_router(router)
-
-# @app.post("/generate")
-# def home():
-#     return {"message": "Welcome to Fibonacci Generator API"}
