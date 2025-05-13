@@ -10,7 +10,7 @@ class Greetrequest(BaseModel):
 def read_root():
     return {"message": "Hello from FastAPI in Docker!"}
 
-# check1
+# check2
 @app.post("/greet/{name}")
 def greet_user(name: str):
     return {"message": f"Hello, {name}!"}
